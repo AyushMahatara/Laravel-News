@@ -17,10 +17,15 @@
                             </div>
                         </div>
                         <div class="flex min-w-0 gap-x-4">
-                            <a href="{{ route('admin.roles.edit', $role->id) }}"
-                                class="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md">Edit</a>
-
-                            <form class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded-lg" method="POST"
+                            <div class="text-sm leading-6 text-gray-900">
+                                <a href="{{ route('admin.roles.edit', $role->id) }}"
+                                    class=" bg-blue-700 rounded-lg px-2 py-2">Edit</a>
+                            </div>
+                            <div class="text-sm leading-6 text-gray-900">
+                                <a href="{{ route('admin.roles.destroy', $role->id) }}"
+                                    class=" bg-red-700 rounded-lg px-2 py-2">Delete</a>
+                            </div>
+                            <form class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded-md" method="POST"
                                 action="{{ route('admin.roles.destroy', $role->id) }}"
                                 onsubmit="return confirm('Are you sure?');">
                                 @csrf

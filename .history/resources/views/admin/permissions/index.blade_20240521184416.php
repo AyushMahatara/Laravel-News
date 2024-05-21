@@ -19,30 +19,16 @@
                             </div>
                         </div>
                         <div class="flex min-w-0 gap-x-4">
-                            <a href="{{ route('admin.permissions.edit', $permission->id) }}"
-                                class="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md">Edit</a>
-
-                            <form class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded-lg" method="POST"
-                                action="{{ route('admin.permissions.destroy', $permission->id) }}"
-                                onsubmit="return confirm('Are you sure?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit">Delete</button>
-                            </form>
-
-                        </div>
-
-                        {{-- <div class="flex min-w-0 gap-x-4">
                             <div class="text-sm leading-6 text-gray-900">
                                 <a href="{{ route('admin.permissions.edit', $permission->id) }}"
-                                    class=" bg-blue-700 rounded-lg px-2 py-2">Edit</a>
+                                    class=" bg-blue-400 rounded-lg px-2 py-2">Edit</a>
                             </div>
                             <div class="text-sm leading-6 text-gray-900">
                                 <a href="{{ route('admin.permissions.destroy', $permission->id) }}"
                                     class=" bg-red-400 rounded-lg px-2 py-2">Delete</a>
                             </div>
 
-                        </div> --}}
+                        </div>
                     </li>
                     @endforeach
 

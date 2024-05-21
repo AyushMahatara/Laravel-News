@@ -17,41 +17,6 @@
 </head>
 
 <body class="font-sans antialiased">
-    @if (Session::has('message'))
-    <!-- This example requires Tailwind CSS v2.0+ -->
-    <div class="bg-indigo-600" x-data="{open: true}" x-show="open">
-        <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between flex-wrap">
-                <div class="w-0 flex-1 flex items-center">
-                    <span class="flex p-2 rounded-lg bg-indigo-800">
-                        <!-- Heroicon name: outline/speakerphone -->
-                        <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
-                        </svg>
-                    </span>
-                    <p class="ml-3 font-medium text-white truncate">
-                        <span class="md:hidden"> {{ Session::get('message') }} </span>
-                        <span class="hidden md:inline"> {{ Session::get('message') }} </span>
-                    </p>
-                </div>
-                <div class="order-2 flex-shrink-0 sm:order-3 sm:ml-3">
-                    <button @click="open = false" type="button"
-                        class="-mr-1 flex p-2 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white sm:-mr-2">
-                        <span class="sr-only">Dismiss</span>
-                        <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endif
-
     <div class="flex-col w-full md:flex md:flex-row md:min-h-screen">
         <div @click.away="open = false"
             class="flex flex-col flex-shrink-0 w-full text-gray-700 bg-white md:w-64 dark:text-gray-200 dark:bg-gray-800"
@@ -73,12 +38,14 @@
             </div>
             <nav :class="{'block': open, 'hidden': !open}"
                 class="flex-grow px-4 pb-4 md:block md:pb-0 md:overflow-y-auto">
-                <x-admin-link :href="route('admin.roles.index')" :active="request()->routeIs('admin.roles.index')">Roles
+                <x-admin-link :href="{{ route('admin.roles.index') }}" :active="request()->routes('admin.roles.index')">
+                    Roles
                 </x-admin-link>
-                <x-admin-link :href="route('admin.permissions.index')"
-                    :active="request()->routeIs('admin.permissions.index')">Permissions</x-admin-link>
-                <x-admin-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">Users
-                </x-admin-link>
+                <x-admin-link href="{{ route('admin.permissions.index') }}">Permission</x-admin-link>
+                <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                    href="#">About</a>
+                <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                    href="#">Contact</a>
                 <div @click.away="open = false" class="relative" x-data="{ open: false }">
                     <button @click="open = !open"
                         class="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark:bg-transparent dark:focus:text-white dark:hover:text-white dark:focus:bg-gray-600 dark:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
@@ -98,13 +65,14 @@
                         x-transition:leave-end="transform opacity-0 scale-95"
                         class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg">
                         <div class="px-2 py-2 bg-white rounded-md shadow dark:bg-gray-700">
+
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
 
                                 <x-dropdown-link
                                     class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                                     :href="route('logout')" onclick="event.preventDefault();
-                                                            this.closest('form').submit();">
+                                                        this.closest('form').submit();">
                                     {{ __('Log Out') }}
                                 </x-dropdown-link>
                             </form>

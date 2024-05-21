@@ -16,17 +16,15 @@
                                 <p class="text-sm font-semibold leading-6 text-gray-900">{{ $role->name }}</p>
                             </div>
                         </div>
-                        <div class="flex min-w-0 gap-x-4">
-                            <a href="{{ route('admin.roles.edit', $role->id) }}"
-                                class="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md">Edit</a>
-
-                            <form class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded-lg" method="POST"
-                                action="{{ route('admin.roles.destroy', $role->id) }}"
-                                onsubmit="return confirm('Are you sure?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit">Delete</button>
-                            </form>
+                        <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+                            <div class="text-sm leading-6 text-gray-900">
+                                <a href="{{ route('admin.roles.edit', $role->id) }}"
+                                    class=" bg-blue-400 rounded-lg px-2 py-2">Edit</a>
+                            </div>
+                            <div class="text-sm leading-6 text-gray-900">
+                                <a href="{{ route('admin.roles.destroy', $role->id) }}"
+                                    class=" bg-red-400 rounded-lg px-2 py-2">Delete</a>
+                            </div>
 
                         </div>
                     </li>

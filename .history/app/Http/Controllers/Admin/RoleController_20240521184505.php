@@ -11,7 +11,7 @@ class RoleController extends Controller
 {
     public function index()
     {
-        $roles = Role::whereNotIn('name', ['admin'])->get();
+        $roles = Role::all();
         return view('admin.roles.index', compact('roles'));
     }
 
@@ -47,23 +47,5 @@ class RoleController extends Controller
         $role->delete();
 
         return back()->with('message', 'Role deleted.');
-    }
-
-    public function givePermission(Request $request, Role $role)
-    {
-        if ($role->hasPermissionTo($request->permission)) {
-            return back()->with('message', 'Permission exists.');
-        }
-        $role->givePermissionTo($request->permission);
-        return back()->with('message', 'Permission added.');
-    }
-
-    public function revokePermission(Role $role, Permission $permission)
-    {
-        if ($role->hasPermissionTo($permission)) {
-            $role->revokePermissionTo($permission);
-            return back()->with('message', 'Permission revoked.');
-        }
-        return back()->with('message', 'Permission not exists.');
     }
 }
