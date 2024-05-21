@@ -36,10 +36,7 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
         Route::resource('/category', CategoryController::class);
     }
 );
-Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->group(
-    function () {
-    }
-);
+
 
 
 
