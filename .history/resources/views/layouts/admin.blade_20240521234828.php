@@ -83,7 +83,7 @@
                     :active="request()->routeIs('admin.category.index')">Category
                 </x-admin-link>
                 <x-admin-link :href="route('admin.news.index')" :active="request()->routeIs('admin.news.index')">
-                    News
+                    Category
                 </x-admin-link>
                 <div @click.away="open = false" class="relative" x-data="{ open: false }">
                     <button @click="open = !open"

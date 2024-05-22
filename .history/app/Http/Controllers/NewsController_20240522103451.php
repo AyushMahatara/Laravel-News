@@ -69,7 +69,7 @@ class NewsController extends Controller
     public function update(Request $request, News $news)
     {
         $data = $request->all();
-        // dd($request->file('image'));
+        dd($data);
         if ($request->file('image')) {
             $path = $request->file('image')->store('public/images');
             $url = Storage::url($path);

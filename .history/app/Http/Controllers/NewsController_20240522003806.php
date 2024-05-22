@@ -68,20 +68,7 @@ class NewsController extends Controller
      */
     public function update(Request $request, News $news)
     {
-        $data = $request->all();
-        // dd($request->file('image'));
-        if ($request->file('image')) {
-            $path = $request->file('image')->store('public/images');
-            $url = Storage::url($path);
-            $data['image'] = $url;
-        } else {
-            // Keep the old image if no new image is uploaded
-            $data['image'] = $news->image;
-        }
-
-        $data['slug'] = Str::slug($request->title, '-');
-        $news->update($data);
-        return to_route('admin.news.index')->with('message', 'News Updated successfully.');
+        //
     }
 
     /**

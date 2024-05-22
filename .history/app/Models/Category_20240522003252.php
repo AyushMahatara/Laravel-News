@@ -12,8 +12,4 @@ class Category extends Model
         'name',
         'slug',
     ];
-    public function news()
-    {
-        return $this->hasMany(News::class);
-    }
 }
