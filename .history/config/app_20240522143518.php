@@ -117,7 +117,9 @@ return [
     | Supported drivers: "file", "cache"
     |
     */
-
+    'providers' => [
+        Usamamuneerchaudhary\Commentify\Providers\CommentifyServiceProvider::class,
+    ],
 
     'maintenance' => [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),

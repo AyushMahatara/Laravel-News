@@ -17,7 +17,7 @@ Route::get('/', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dashboard', [NewsController::class, 'show'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [NewsController::class, 'show'])->middleware(['auth', 'verified', 'role:admin|category_admin|noremal_user'])->name('dashboard');
 
 Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->group(
     function () {

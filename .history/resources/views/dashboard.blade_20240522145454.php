@@ -41,9 +41,8 @@
             </div>
         </div>
     </div>
-    @hasanyrole('normal_user|admin|category_admin')
-    <livewire:comments :model="$new" />
-    @endhasanyrole
+
+
     @endforeach
 
 

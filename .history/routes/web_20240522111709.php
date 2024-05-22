@@ -13,13 +13,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dashboard', [NewsController::class, 'show'])->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->group(
+Route::middleware(['auth', 'role:category_admin'])->name('admin.')->prefix('admin')->group(
     function () {
         Route::get('/', [IndexController::class, 'index'])->name('index');
         Route::resource('/roles', RoleController::class);
@@ -39,7 +37,7 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
         Route::resource('/category', CategoryController::class);
     }
 );
-Route::middleware(['auth', 'role:admin|category_admin'])->name('admin.')->prefix('admin')->group(
+Route::middleware(['auth', 'role:admin,category_admin'])->name('admin.')->prefix('admin')->group(
     function () {
         Route::get('/', [IndexController::class, 'index'])->name('index');
         Route::resource('/news', NewsController::class);

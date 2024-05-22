@@ -50,8 +50,7 @@ class NewsController extends Controller
      */
     public function show(News $news)
     {
-        $news = News::all();
-        return view('dashboard', compact('news'));
+        //
     }
 
     /**
@@ -91,6 +90,5 @@ class NewsController extends Controller
     public function destroy(News $news)
     {
         $news->delete();
-        return back()->with('message', 'News deleted.');
     }
 }
